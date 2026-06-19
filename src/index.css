@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 33% 99%;
+    --foreground: 215 40% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 40% 14%;
+
+    --muted: 210 24% 96%;
+    --muted-foreground: 214 16% 44%;
+
+    /* Brand blue (from logo) */
+    --primary: 202 76% 47%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Brand red (from logo) */
+    --accent: 359 74% 54%;
+    --accent-foreground: 0 0% 100%;
+
+    --border: 213 28% 90%;
+    --input: 213 28% 88%;
+    --ring: 202 76% 47%;
+
+    --radius: 0.875rem;
+
+    --gradient-brand: linear-gradient(135deg, hsl(204 82% 38%), hsl(202 78% 50%), hsl(196 85% 56%));
+    --gradient-deep: linear-gradient(160deg, hsl(216 72% 13%), hsl(212 70% 20%) 55%, hsl(206 72% 28%));
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.18);
+  }
+
+  /* Accessible focus ring */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1280px] px-5 lg:px-8;
+  }
+
+  .gradient-brand {
+    background-image: var(--gradient-brand);
+  }
+  .gradient-deep {
+    background-image: var(--gradient-deep);
+  }
+
+  .text-gradient {
+    background-image: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary;
+  }
+
+  /* subtle animated underline for nav links */
+  .nav-link {
+    @apply relative text-sm font-medium text-muted-foreground transition-colors hover:text-foreground;
+  }
+  .nav-link::after {
+    content: "";
+    @apply absolute -bottom-1 left-0 h-0.5 w-0 rounded-full bg-primary transition-all duration-300;
+  }
+  .nav-link:hover::after,
+  .nav-link[data-active="true"]::after {
+    @apply w-full;
+  }
+  .nav-link[data-active="true"] {
+    @apply text-foreground;
+  }
+}
+
+/* Hide scrollbar for marquee track */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}

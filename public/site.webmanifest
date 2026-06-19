@@ -1,0 +1,13 @@
+{
+  "name": "SGI — Expertise Comptable & Solutions Informatiques",
+  "short_name": "SGI",
+  "description": "Cabinet d'expertise comptable et informatique à Lomé, Togo.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1f8ed1",
+  "lang": "fr",
+  "icons": [
+    { "src": "/logo-sgi.png", "sizes": "any", "type": "image/png", "purpose": "any" }
+  ]
+}
